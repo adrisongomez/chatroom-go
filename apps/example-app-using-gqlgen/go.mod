@@ -1,4 +1,4 @@
-module graphql-api-gateway
+module example-graphql
 
 go 1.19
 

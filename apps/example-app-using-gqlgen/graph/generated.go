@@ -8,7 +8,7 @@ import (
 	"embed"
 	"errors"
 	"fmt"
-	"graphql-api-gateway/graph/model"
+	"example-graphql/graph/model"
 	"strconv"
 	"sync"
 	"sync/atomic"

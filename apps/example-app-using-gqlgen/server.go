@@ -1,7 +1,7 @@
 package main
 
 import (
-	"graphql-api-gateway/graph"
+	"example-graphql/graph"
 	"log"
 	"net/http"
 	"os"
