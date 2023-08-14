@@ -1,3 +1,8 @@
 go 1.19
 
-use ./apps/example-app-using-gqlgen
+use (
+	./apps/api-gateway
+	./apps/user-services
+	./libs/config-parser
+	./libs/grpc-server
+)

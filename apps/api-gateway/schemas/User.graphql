@@ -1,0 +1,10 @@
+type User implements Node {
+    id: ID!
+    username: String!
+    email: String!
+    primaryColor: String!
+}
+
+extend type Query {
+    user(id: ID!): User
+}

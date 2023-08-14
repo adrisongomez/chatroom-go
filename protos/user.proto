@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+package user;
+option go_package = "user-services/proto";
+
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    optional string primaryColor = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    optional google.protobuf.Timestamp updatedAt = 6;
+}
+
+message GetUserByIdRequest {
+     string id = 1;
+}
+
+message GetUserByUsernameRequest {
+     string username = 1;
+}
+
+message CreateUserRequest {
+     string username = 1;
+     string email = 2;
+    optional string primaryColor = 3;
+}
+
+message UpdateUserRequest {
+     string id = 1;
+    optional string username = 2;
+    optional string email = 3;
+    optional string primaryColor = 4;
+}
+
+message DeleteUserRequest {
+     string id = 1;
+}
+
+message GetUsersIdsRequests {
+    repeated string ids = 1;
+}
+
+message GetUsersUsernamesRequests {
+    repeated string usernames = 1;
+}
+
+message GetUsersEmailsRequests {
+    repeated string emails = 1;
+}
+
+message GetUsersRequests {
+    optional GetUsersIdsRequests ids = 1;
+    optional GetUsersUsernamesRequests usernames = 2;
+    optional GetUsersEmailsRequests emails = 3;
+}
+
+service UserService {
+    rpc GetUserById(GetUserByIdRequest) returns (User);
+    rpc GetUserByUsername(GetUserByUsernameRequest) returns (User);
+    rpc CreateUser(CreateUserRequest) returns (User);
+    rpc UpdateUser(UpdateUserRequest) returns (User);
+    rpc DeleteUser(DeleteUserRequest) returns (User);
+    rpc GetUsers(GetUsersRequests) returns (stream User);
+}
