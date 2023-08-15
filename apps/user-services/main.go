@@ -5,6 +5,8 @@ import (
 	"fmt"
 	wrapper "grpc-server"
 	"os"
+	"user-services/proto"
+	"user-services/service"
 )
 
 func main() {
@@ -14,6 +16,8 @@ func main() {
 	}
 
 	server := wrapper.NewServer(config)
+	service := service.New()
+	proto.RegisterUserServiceServer(server.GetRef(), service)
 
 	// TODO: Add services here
 
