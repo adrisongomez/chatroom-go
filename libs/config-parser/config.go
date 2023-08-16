@@ -9,7 +9,7 @@ type Config struct {
 // ServiceConfig contains the configuration for a service.
 // It contains the name and the port of the service.
 type ServiceConfig struct {
-	ServiceName string `yaml:"name"`
-	ServicePort int    `yaml:"port"`
+	ServiceName       string `yaml:"name"`
+	ServicePort       int    `yaml:"port"`
+	ServiceReflection bool   `yaml:"reflection"`
 }
-

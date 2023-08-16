@@ -1,0 +1,4 @@
+version: v1
+directories:
+ - ./apps/user-services
+ - ./libs/grpc-server

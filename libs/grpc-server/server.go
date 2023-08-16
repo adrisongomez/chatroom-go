@@ -3,10 +3,12 @@ package grpcserver
 import (
 	config_parser "config-parser"
 	"fmt"
+	"grpc-server/gen/proto"
 	"log"
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 // Server is a wrapper on top of grpc.Server and net.Listener
@@ -40,7 +42,12 @@ func (s Server) Listen() {
 		panic(err)
 	}
 
-	log.Printf("service: %s listening in port %d", s.config.ServiceName, s.config.ServicePort)
+	if s.config.ServiceReflection {
+		log.Printf("service: %s enabling reflection\n", s.config.ServiceName)
+		reflection.Register(s.grpcServer)
+	}
+
+	log.Printf("service: %s listening in port %d\n", s.config.ServiceName, s.config.ServicePort)
 	if err := s.grpcServer.Serve(lis); err != nil {
 		log.Fatalf("service: %s failed to serve: %v", s.config.ServiceName, err)
 		panic(err)
@@ -55,6 +62,8 @@ func (s Server) Stop() {
 
 func NewServer(config *config_parser.Config) Server {
 	grpcServer := grpc.NewServer()
+	s := &HealthServer{}
+	proto.RegisterHealthServer(grpcServer, s)
 
 	return Server{
 		config:     config.Service,

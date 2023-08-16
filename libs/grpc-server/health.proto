@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "chatroom-go/health";
+
+message Response {
+    string content = 1;
+}
+
+message Request {
+    string content = 2;
+}
+
+service Health {
+    rpc Check(Request) returns (Response);
+}
+

@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"user-services/proto"
+	"user-services/gen/proto"
 )
 
 type Service struct {

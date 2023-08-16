@@ -1,3 +1,4 @@
 service:
   port: 8080
   name: user-service
+  reflection: true
